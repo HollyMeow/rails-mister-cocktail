@@ -1,2 +1,24 @@
-<h1>Cocktails#index</h1>
-<p>Find me in app/views/cocktails/index.html.erb</p>
+<h1>Liste des cocktails :</h1>
+
+
+<div class="container">
+  <div class="row">
+
+
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-sm-4">
+        <h3 style="text-transform: uppercase; font-weight: bold;"><i class="fa fa-glass" style="color: violet;" aria-hidden="true"></i>
+          <%= cocktail.name %></h3>
+      <%= link_to "Voir", cocktail_path(cocktail.id), class: "btn btn-default" %>
+
+      </div>
+    <% end %>
+
+  </div>
+
+  <%= link_to new_cocktail_path, class: "btn btn-success", style: "margin-top: 2em;"  do%>
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Ajouter un cocktail
+  <% end  %>
+
+</div>

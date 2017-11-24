@@ -1,2 +1,7 @@
-<h1>Ingredients#new</h1>
-<p>Find me in app/views/ingredients/new.html.erb</p>
+<h2>Ajouter un Ingredient</h2>
+
+
+  <%= simple_form_for @ingredient do |r| %>
+  <%= r.input :name, label: 'Ingredient',  placeholder: 'Soft, Alcool, aliment,..' %>
+  <%= r.button :submit, class: 'btn-success btn-block' %>
+<% end %>

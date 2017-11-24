@@ -1,2 +1,38 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<div class="container">
+
+  <h2 style="text-transform: uppercase;"><%= @cocktail.name %></h2>
+  <hr>
+  <ul>
+    <% @cocktail.doses.each do |dose| %>
+      <li>
+        <%= dose.description %> de <%= dose.ingredient.name %>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+
+
+  <%= simple_form_for(@dose) do |f| %>
+    <%= f.error_notification %>
+    <%= f.association :ingredient %>
+    <%= f.input :description %>
+    <%= f.button :submit, class: 'btn-success' %>
+  <% end %>
+
+  <hr>
+    <div class="row">
+      <div class="col-xs-6">
+      <%= link_to "<-- Retour aux cocktails", cocktails_path, class: "btn btn-default" %>
+      </div>
+      <div class="col-xs-6">
+
+        <%= link_to "Supprimer le cocktail",
+            cocktail_path(@cocktail.id), class: "btn btn-default",
+
+            data: { confirm: "Etes vous certain?" },
+            method: :delete %>
+      </div>
+
+    </div>
+  <hr>
+</div>

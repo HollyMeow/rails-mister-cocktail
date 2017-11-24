@@ -12,6 +12,9 @@ class Dose < ApplicationRecord
   validates :ingredient_id, presence: true
 
   # [cocktail, ingredient] pairings should be unique
-  validates :cocktail_id, uniqueness: {scope: :ingredient_id}
+  validates :cocktail_id, uniqueness: {
+    scope: :ingredient_id,
+    message: "T'as déjà mi cet ingrédient bro !"
+  }
 
 end

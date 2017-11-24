@@ -1,2 +1,30 @@
-<h1>Ingredients#index</h1>
-<p>Find me in app/views/ingredients/index.html.erb</p>
+<h1>Liste des ingredients :</h1>
+
+
+<div class="container">
+  <div class="row">
+    <% @ingredients.each do |ingredient| %>
+      <div class="col-xs-12 col-sm-6 col-ml-4">
+
+        <h3 style="text-transform: uppercase; font-weight: bold;"><i class="fa fa-envira" aria-hidden="true" style="color: violet;""></i>
+<%= ingredient.name %></h3>
+
+
+        <%= link_to ingredient_path(ingredient.id), class: "btn btn-danger",
+
+        data: { confirm: "Etes vous certain?" },
+        method: :delete  do%>
+          <i class="fa fa-times" aria-hidden="true"></i> Supprimer
+        <% end  %>
+<hr>
+      </div>
+    <% end %>
+
+  </div>
+
+  <%= link_to new_ingredient_path, class: "btn btn-success"  do%>
+    <i class="fa fa-plus" aria-hidden="true"></i>
+      Ajouter un ingredient
+    <% end  %>
+
+</div>
