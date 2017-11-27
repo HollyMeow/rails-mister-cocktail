@@ -5,4 +5,8 @@ class Ingredient < ApplicationRecord
   # An ingredient must have a unique name
   validates :name, uniqueness: true
 
+
+  validates :photo, presence: true
+  has_attachment :photo
 end
+

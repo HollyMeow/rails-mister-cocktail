@@ -5,9 +5,11 @@
   <div class="row">
     <% @ingredients.each do |ingredient| %>
       <div class="col-xs-12 col-sm-6 col-ml-4">
+      <% if ingredient.photo? %>
+      <%= cl_image_tag ingredient.photo.path, width: 150, height: 150, crop: :fill %>
+      <% end %>
 
-        <h3 style="text-transform: uppercase; font-weight: bold;"><i class="fa fa-envira" aria-hidden="true" style="color: violet;""></i>
-<%= ingredient.name %></h3>
+        <h3 style="text-transform: uppercase; font-weight: bold;"><i class="fa fa-envira" aria-hidden="true" style="color: violet;""></i> <%= ingredient.name %></h3>
 
 
         <%= link_to ingredient_path(ingredient.id), class: "btn btn-danger",

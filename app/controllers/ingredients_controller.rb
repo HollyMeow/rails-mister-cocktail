@@ -40,7 +40,7 @@ before_action :set_ingredient, only: [:show, :edit, :update, :destroy ]
   private
 
   def ingredient_params
-     params.require(:ingredient).permit(:name)
+     params.require(:ingredient).permit(:name, :photo)
   end
 
   def set_ingredient

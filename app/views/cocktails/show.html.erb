@@ -1,17 +1,32 @@
-<div class="row">
+
     <h1 style="text-transform: uppercase;"><%= @cocktail.name %></h1>
-<hr>
-  <div class="col-xs-6">
+
+<div class="row" style="background-color: white; border-radius: 15px; padding: 2em;">
+  <div class="col-xs-5">
 
       <% if @cocktail.photo? %>
       <%= cl_image_tag @cocktail.photo.path, width: 200, height: 300, crop: :fill %>
       <% end %>
   </div>
 
-  <div class="col-xs-6">
-    <ul>
+  <div class="col-xs-7" >
+    <ul >
       <% @cocktail.doses.each do |dose| %>
-        <li>
+
+
+        <li style="text-align: left; margin-left: 2em; font-size: 1.2em;">
+
+          <!-- SUPPRIMER UNE DOSE -->
+          <%= link_to cocktail_dose_path(@cocktail.id, dose.id), class: "btn btn-danger", style: "margin-right:2em; font-size: 0.8em;",
+            data: { confirm: "Etes vous certain?" },
+            method: :delete  do%>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          <% end  %>
+          <!-- PHOTO DE L'INGREDIENT -->
+          <% if dose.ingredient.photo? %>
+            <%= cl_image_tag dose.ingredient.photo.path, width: 50, height: 50, crop: :fill %>
+          <% end %>
+          <!-- DESCRIPTION DE LA DOSE -->
           <%= dose.description %> <%= dose.ingredient.name %>
         </li>
         <hr>
@@ -25,8 +40,8 @@
 
  <%= simple_form_for(@dose) do |f| %>
     <%= f.error_notification %>
-    <%= f.association :ingredient %>
     <%= f.input :description %>
+    <%= f.association :ingredient, collection: Ingredient.order('name ASC') %>
     <%= f.button :submit, class: 'btn-success' %>
   <% end %>
 <hr>

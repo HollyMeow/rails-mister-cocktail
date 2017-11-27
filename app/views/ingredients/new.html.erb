@@ -3,5 +3,7 @@
 
   <%= simple_form_for @ingredient do |r| %>
   <%= r.input :name, label: 'Ingredient',  placeholder: 'Soft, Alcool, aliment,..' %>
+
+  <%= r.input :photo, as: :attachinary %>
   <%= r.button :submit, class: 'btn-success btn-block' %>
 <% end %>
